@@ -1,0 +1,192 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "username": "johndoe",
+        "email": "johndoe@example.com",
+        "address": {
+            "street": "123 Main Street",
+            "suite": "Apt 4B",
+            "city": "Boston"
+        },
+        "phone": "555-123-4567",
+        "website": "www.johndoe.com",
+        "company": {
+            "name": "ABC Inc.",
+            "industry": "Technology"
+        },
+        "gender": "Male",
+        "age": 30
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "username": "janesmith",
+        "email": "janesmith@example.com",
+        "address": {
+            "street": "456 Elm Street",
+            "suite": "Suite 202",
+            "city": "Philadelphia"
+        },
+        "phone": "555-987-6543",
+        "website": "www.janesmith.com",
+        "company": {
+            "name": "MarketingMasters",
+            "industry": "Marketing"
+        },
+        "gender": "Female",
+        "age": 28
+    },
+    {
+        "id": 3,
+        "name": "Alice Johnson",
+        "username": "alicej",
+        "email": "alice@example.com",
+        "address": {
+            "street": "789 Oak Avenue",
+            "suite": "Unit 101",
+            "city": "Miami"
+        },
+        "phone": "555-567-8901",
+        "website": "www.alicejohnson.com",
+        "company": {
+            "name": "DataTech",
+            "industry": "Data Science"
+        },
+        "gender": "Female",
+        "age": 35
+    },
+    {
+        "id": 4,
+        "name": "Bob Wilson",
+        "username": "bobw",
+        "email": "bob@example.com",
+        "address": {
+            "street": "321 Pine Road",
+            "suite": "Apt 3C",
+            "city": "Boston"
+        },
+        "phone": "555-234-5678",
+        "website": "www.bobwilson.com",
+        "company": {
+            "name": "ABC Inc.",
+            "industry": "Technology"
+        },
+        "gender": "Male",
+        "age": 32
+    },
+    {
+        "id": 5,
+        "name": "Eva Brown",
+        "username": "evabrown",
+        "email": "eva@example.com",
+        "address": {
+            "street": "567 Cedar Lane",
+            "suite": "Unit 505",
+            "city": "Philadelphia"
+        },
+        "phone": "555-345-6789",
+        "website": "www.evabrown.com",
+        "company": {
+            "name": "MarketingMasters",
+            "industry": "Marketing"
+        },
+        "gender": "Female",
+        "age": 27
+    },
+    {
+        "id": 6,
+        "name": "David Lee",
+        "username": "davidl",
+        "email": "david@example.com",
+        "address": {
+            "street": "987 Maple Drive",
+            "suite": "Apt 2D",
+            "city": "Miami"
+        },
+        "phone": "555-789-0123",
+        "website": "www.davidlee.com",
+        "company": {
+            "name": "DataTech",
+            "industry": "Data Science"
+        },
+        "gender": "Male",
+        "age": 29
+    },
+    {
+        "id": 7,
+        "name": "Grace Taylor",
+        "username": "gracet",
+        "email": "grace@example.com",
+        "address": {
+            "street": "234 Birch Street",
+            "suite": "Suite 303",
+            "city": "Philadelphia"
+        },
+        "phone": "555-456-7890",
+        "website": "www.gracetaylor.com",
+        "company": {
+            "name": "MarketingMasters",
+            "industry": "Marketing"
+        },
+        "gender": "Female",
+        "age": 31
+    },
+    {
+        "id": 8,
+        "name": "Michael White",
+        "username": "michaelw",
+        "email": "michael@example.com",
+        "address": {
+            "street": "543 Oak Lane",
+            "suite": "Unit 404",
+            "city": "Miami"
+        },
+        "phone": "555-890-1234",
+        "website": "www.michaelwhite.com",
+        "company": {
+            "name": "DataTech",
+            "industry": "Data Science"
+        },
+        "gender": "Male",
+        "age": 34
+    },
+    {
+        "id": 9,
+        "name": "Olivia Anderson",
+        "username": "oliviaa",
+        "email": "olivia@example.com",
+        "address": {
+            "street": "876 Pine Road",
+            "suite": "Apt 1A",
+            "city": "Boston"
+        },
+        "phone": "555-678-9012",
+        "website": "www.oliviaanderson.com",
+        "company": {
+            "name": "ABC Inc.",
+            "industry": "Technology"
+        },
+        "gender": "Female",
+        "age": 26
+    },
+    {
+        "id": 10,
+        "name": "William Clark",
+        "username": "williamc",
+        "email": "william@example.com",
+        "address": {
+            "street": "123 Cedar Avenue",
+            "suite": "Suite 102",
+            "city": "Boston"
+        },
+        "phone": "555-012-3456",
+        "website": "www.williamclark.com",
+        "company": {
+            "name": "ABC Inc.",
+            "industry": "Technology"
+        },
+        "gender": "Male",
+        "age": 33
+    }
+]
