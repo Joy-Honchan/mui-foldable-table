@@ -1,14 +1,12 @@
 import { Fragment, useState } from 'react'
 import {
-  Box,
   Collapse,
   IconButton,
   Table,
   TableBody,
   TableCell,
   TableHead,
-  TableRow,
-  Typography
+  TableRow
 } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
@@ -32,8 +30,9 @@ const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
         <TableCell>{singleRowData.name}</TableCell>
         <TableCell>{singleRowData.company.name}</TableCell>
         <TableCell>{singleRowData.company.industry}</TableCell>
-        <TableCell>{singleRowData.gender}</TableCell>
         <TableCell>{singleRowData.age}</TableCell>
+        <TableCell>{singleRowData.gender}</TableCell>
+        <TableCell>{singleRowData.website}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell padding="none" colSpan={8}>
@@ -41,14 +40,48 @@ const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
             <Table sx={{ backgroundColor: '#ededed' }}>
               <TableHead>
                 <TableRow>
+                  <TableCell colSpan={3} />
+                  <TableCell
+                    colSpan={3}
+                    align="center"
+                    sx={{
+                      borderLeft: '2px solid #bcbcbc',
+                      borderRight: '2px solid #bcbcbc'
+                    }}
+                  >
+                    Address
+                  </TableCell>
+                  <TableCell colSpan={2} />
+                </TableRow>
+                <TableRow>
                   <TableCell padding="checkbox" />
                   <TableCell>UserName</TableCell>
                   <TableCell>Email</TableCell>
-                  <TableCell>Address City</TableCell>
-                  <TableCell>Address Street</TableCell>
-                  <TableCell>Address Suite</TableCell>
+                  <TableCell
+                    sx={{
+                      borderLeft: '2px solid #bcbcbc',
+                      borderRight: '2px solid #bcbcbc'
+                    }}
+                  >
+                    City
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      borderLeft: '2px solid #bcbcbc',
+                      borderRight: '2px solid #bcbcbc'
+                    }}
+                  >
+                    Street
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      borderLeft: '2px solid #bcbcbc',
+                      borderRight: '2px solid #bcbcbc'
+                    }}
+                  >
+                    Suite
+                  </TableCell>
                   <TableCell>Phone</TableCell>
-                  <TableCell>Website</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -60,7 +93,6 @@ const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
                   <TableCell>{singleRowData.address.street}</TableCell>
                   <TableCell>{singleRowData.address.suite}</TableCell>
                   <TableCell>{singleRowData.phone}</TableCell>
-                  <TableCell>{singleRowData.website}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

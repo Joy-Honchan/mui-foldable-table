@@ -26,13 +26,42 @@ const FoldableTable = ({ rowData }: PropType) => {
       <Table>
         <TableHead sx={{ backgroundColor: '#d8d8d8' }}>
           <TableRow>
+            <TableCell colSpan={3} />
+            <TableCell
+              colSpan={2}
+              align="center"
+              sx={{
+                borderLeft: '2px solid #ffffff',
+                borderRight: '2px solid #ffffff'
+              }}
+            >
+              Company
+            </TableCell>
+            <TableCell colSpan={3} />
+          </TableRow>
+          <TableRow>
             <TableCell />
             <TableCell>id</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Company</TableCell>
-            <TableCell>Industry</TableCell>
-            <TableCell>Gender</TableCell>
+            <TableCell
+              sx={{
+                borderLeft: '2px solid #ffffff',
+                borderRight: '2px solid #ffffff'
+              }}
+            >
+              Name
+            </TableCell>
+            <TableCell
+              sx={{
+                borderLeft: '2px solid #ffffff',
+                borderRight: '2px solid #ffffff'
+              }}
+            >
+              Industry
+            </TableCell>
             <TableCell>Age</TableCell>
+            <TableCell>Gender</TableCell>
+            <TableCell>Website</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -29,7 +29,7 @@
             "city": "Philadelphia"
         },
         "phone": "555-987-6543",
-        "website": "www.janesmith.com",
+        "website": "",
         "company": {
             "name": "MarketingMasters",
             "industry": "Marketing"
@@ -67,7 +67,7 @@
             "city": "Boston"
         },
         "phone": "555-234-5678",
-        "website": "www.bobwilson.com",
+        "website": "",
         "company": {
             "name": "ABC Inc.",
             "industry": "Technology"
@@ -86,7 +86,7 @@
             "city": "Philadelphia"
         },
         "phone": "555-345-6789",
-        "website": "www.evabrown.com",
+        "website": "",
         "company": {
             "name": "MarketingMasters",
             "industry": "Marketing"
