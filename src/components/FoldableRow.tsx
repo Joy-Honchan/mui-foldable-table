@@ -1,19 +1,18 @@
 import { Fragment, useState } from 'react'
-import {
-  Collapse,
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow
-} from '@mui/material'
+import { Collapse, IconButton, TableCell, TableRow } from '@mui/material'
+import InnerTable from './InnerTable.tsx'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DataType from '../type.ts'
 
 const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
   const [open, setOpen] = useState(false)
+  const innerRowData = {
+    address: singleRowData.address,
+    username: singleRowData.username,
+    email: singleRowData.email,
+    phone: singleRowData.phone
+  }
   return (
     <Fragment>
       <TableRow>
@@ -37,65 +36,11 @@ const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
       <TableRow>
         <TableCell padding="none" colSpan={8}>
           <Collapse in={open}>
-            <Table sx={{ backgroundColor: '#ededed' }}>
-              <TableHead>
-                <TableRow>
-                  <TableCell colSpan={3} />
-                  <TableCell
-                    colSpan={3}
-                    align="center"
-                    sx={{
-                      borderLeft: '2px solid #bcbcbc',
-                      borderRight: '2px solid #bcbcbc'
-                    }}
-                  >
-                    Address
-                  </TableCell>
-                  <TableCell colSpan={2} />
-                </TableRow>
-                <TableRow>
-                  <TableCell padding="checkbox" />
-                  <TableCell>UserName</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell
-                    sx={{
-                      borderLeft: '2px solid #bcbcbc',
-                      borderRight: '2px solid #bcbcbc'
-                    }}
-                  >
-                    City
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      borderLeft: '2px solid #bcbcbc',
-                      borderRight: '2px solid #bcbcbc'
-                    }}
-                  >
-                    Street
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      borderLeft: '2px solid #bcbcbc',
-                      borderRight: '2px solid #bcbcbc'
-                    }}
-                  >
-                    Suite
-                  </TableCell>
-                  <TableCell>Phone</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell padding="checkbox" />
-                  <TableCell>{singleRowData.username}</TableCell>
-                  <TableCell>{singleRowData.email}</TableCell>
-                  <TableCell>{singleRowData.address.city}</TableCell>
-                  <TableCell>{singleRowData.address.street}</TableCell>
-                  <TableCell>{singleRowData.address.suite}</TableCell>
-                  <TableCell>{singleRowData.phone}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            <InnerTable<
+              Pick<DataType, 'address' | 'username' | 'email' | 'phone'>
+            >
+              innerRowData={innerRowData}
+            />
           </Collapse>
         </TableCell>
       </TableRow>
