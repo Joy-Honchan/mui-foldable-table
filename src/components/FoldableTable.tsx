@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   Paper,
   TableContainer,
@@ -8,13 +9,18 @@ import {
   TableCell
 } from '@mui/material'
 import FoldableRow from './FoldableRow'
-import DataType from '../type.ts'
+import DataType, { ColItemType } from '../type.ts'
+import getColumnGroup from '../utils/getColumnGroup.ts'
 
-export interface PropType {
+interface PropType {
+  columns: ColItemType[]
+  innerColumns: ColItemType[]
   rowData: DataType[]
 }
 
-const FoldableTable = ({ rowData }: PropType) => {
+const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
+  const columnGroups = useMemo(() => getColumnGroup(columns), [])
+  const innerColumnGroups = useMemo(() => getColumnGroup(innerColumns), [])
   return (
     <TableContainer
       component={Paper}
@@ -26,42 +32,42 @@ const FoldableTable = ({ rowData }: PropType) => {
       <Table>
         <TableHead sx={{ backgroundColor: '#d8d8d8' }}>
           <TableRow>
-            <TableCell colSpan={3} />
-            <TableCell
-              colSpan={2}
-              align="center"
-              sx={{
-                borderLeft: '2px solid #ffffff',
-                borderRight: '2px solid #ffffff'
-              }}
-            >
-              Company
-            </TableCell>
-            <TableCell colSpan={3} />
+            <TableCell />
+            {columnGroups.map((group, index) =>
+              group.label ? (
+                <TableCell
+                  key={index}
+                  colSpan={group.colSpan}
+                  align="center"
+                  sx={{
+                    borderLeft: '2px solid #ffffff',
+                    borderRight: '2px solid #ffffff'
+                  }}
+                >
+                  {group.label}
+                </TableCell>
+              ) : (
+                <TableCell key={index} colSpan={group.colSpan} />
+              )
+            )}
           </TableRow>
           <TableRow>
             <TableCell />
-            <TableCell>id</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell
-              sx={{
-                borderLeft: '2px solid #ffffff',
-                borderRight: '2px solid #ffffff'
-              }}
-            >
-              Name
-            </TableCell>
-            <TableCell
-              sx={{
-                borderLeft: '2px solid #ffffff',
-                borderRight: '2px solid #ffffff'
-              }}
-            >
-              Industry
-            </TableCell>
-            <TableCell>Age</TableCell>
-            <TableCell>Gender</TableCell>
-            <TableCell>Website</TableCell>
+            {columns.map((item, index) => (
+              <TableCell
+                key={index}
+                sx={
+                  item.group
+                    ? {
+                        borderLeft: '2px solid #ffffff',
+                        borderRight: '2px solid #ffffff'
+                      }
+                    : null
+                }
+              >
+                {item.label}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>

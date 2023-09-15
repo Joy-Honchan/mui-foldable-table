@@ -17,3 +17,14 @@ export default interface DataType {
     gender: "Male" | "Female",
     age: number
 }
+
+export interface ColItemType {
+    field: string
+    label: string
+    group?: string
+}
+
+export interface ColumnGroupType {
+    label: string
+    colSpan: number
+}
