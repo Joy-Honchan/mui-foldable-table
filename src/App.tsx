@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import FoldableTable from './components/FoldableTable'
 import DataType from './type'
 import data from './fakeData.json'
+
 import './App.css'
 
 const DATA = data as DataType[]
@@ -22,7 +24,9 @@ function App() {
 
   return (
     <>
-      {receivedData?.map((data) => <div key={data.id}>{data.name}</div>) || (
+      {receivedData ? (
+        <FoldableTable rowData={receivedData} />
+      ) : (
         <div>Loading...</div>
       )}
     </>
