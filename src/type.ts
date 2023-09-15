@@ -1,9 +1,11 @@
 export default interface DataType {
+    [x: string]: string | number | DataType['address'] | DataType['company']
     id: number,
     name: string,
     username: string,
     email: string,
     address: {
+        [x: string]: string
         street: string,
         suite: string,
         city: string,
@@ -11,6 +13,7 @@ export default interface DataType {
     phone: string,
     website: string,
     company: {
+        [x: string]: string
         name: string,
         industry: string
     },

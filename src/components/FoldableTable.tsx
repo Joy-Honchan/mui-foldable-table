@@ -72,7 +72,7 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
         </TableHead>
         <TableBody>
           {rowData?.map((item) => (
-            <FoldableRow key={item.id} singleRowData={item} />
+            <FoldableRow key={item.id} singleRowData={item} columns={columns} />
           ))}
         </TableBody>
       </Table>

@@ -3,10 +3,26 @@ import { Collapse, IconButton, TableCell, TableRow } from '@mui/material'
 import InnerTable from './InnerTable.tsx'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import DataType from '../type.ts'
+import DataType, { ColItemType } from '../type.ts'
 
-const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
+interface PropType {
+  singleRowData: DataType
+  columns: ColItemType[]
+}
+
+const FoldableRow = ({ singleRowData, columns }: PropType) => {
   const [open, setOpen] = useState(false)
+
+  const displayData = (colName: string, rowData: DataType) => {
+    const fieldArr = colName.split('.')
+    const fieldData = rowData[fieldArr[0]]
+    if (typeof fieldData !== 'string' && typeof fieldData !== 'number') {
+      return fieldData[fieldArr[1]]
+    } else {
+      return fieldData
+    }
+  }
+
   const innerRowData = {
     address: singleRowData.address,
     username: singleRowData.username,
@@ -25,13 +41,11 @@ const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell>{singleRowData.id}</TableCell>
-        <TableCell>{singleRowData.name}</TableCell>
-        <TableCell>{singleRowData.company.name}</TableCell>
-        <TableCell>{singleRowData.company.industry}</TableCell>
-        <TableCell>{singleRowData.age}</TableCell>
-        <TableCell>{singleRowData.gender}</TableCell>
-        <TableCell>{singleRowData.website}</TableCell>
+        {columns.map((item, index) => (
+          <TableCell key={index}>
+            {displayData(item.field, singleRowData)}
+          </TableCell>
+        ))}
       </TableRow>
       <TableRow>
         <TableCell padding="none" colSpan={8}>
