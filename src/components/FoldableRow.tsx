@@ -19,7 +19,7 @@ const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
   return (
     <Fragment>
       <TableRow>
-        <TableCell>
+        <TableCell padding="checkbox">
           <IconButton
             aria-label="expand row"
             size="small"
@@ -30,48 +30,43 @@ const FoldableRow = ({ singleRowData }: { singleRowData: DataType }) => {
         </TableCell>
         <TableCell>{singleRowData.id}</TableCell>
         <TableCell>{singleRowData.name}</TableCell>
-        <TableCell>{singleRowData.username}</TableCell>
+        <TableCell>{singleRowData.company.name}</TableCell>
+        <TableCell>{singleRowData.company.industry}</TableCell>
         <TableCell>{singleRowData.gender}</TableCell>
         <TableCell>{singleRowData.age}</TableCell>
-        <TableCell>{singleRowData.email}</TableCell>
-        <TableCell>{singleRowData.phone}</TableCell>
       </TableRow>
-      {/* <TableRow>
-          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <Box sx={{ margin: 1 }}>
-                <Typography variant="h6" gutterBottom component="div">
-                  History
-                </Typography>
-                <Table size="small" aria-label="purchases">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Date</TableCell>
-                      <TableCell>Customer</TableCell>
-                      <TableCell>Amount</TableCell>
-                      <TableCell>Total price ($)</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {row.history.map((historyRow) => (
-                      <TableRow key={historyRow.date}>
-                        <TableCell component="th" scope="row">
-                          {historyRow.date}
-                        </TableCell>
-                        <TableCell>{historyRow.customerId}</TableCell>
-                        <TableCell>{historyRow.amount}</TableCell>
-                        <TableCell>
-                          {Math.round(historyRow.amount * row.price * 100) /
-                            100}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Box>
-            </Collapse>
-          </TableCell>
-        </TableRow> */}
+      <TableRow>
+        <TableCell padding="none" colSpan={8}>
+          <Collapse in={open}>
+            <Table sx={{ backgroundColor: '#ededed' }}>
+              <TableHead>
+                <TableRow>
+                  <TableCell padding="checkbox" />
+                  <TableCell>UserName</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Address City</TableCell>
+                  <TableCell>Address Street</TableCell>
+                  <TableCell>Address Suite</TableCell>
+                  <TableCell>Phone</TableCell>
+                  <TableCell>Website</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell padding="checkbox" />
+                  <TableCell>{singleRowData.username}</TableCell>
+                  <TableCell>{singleRowData.email}</TableCell>
+                  <TableCell>{singleRowData.address.city}</TableCell>
+                  <TableCell>{singleRowData.address.street}</TableCell>
+                  <TableCell>{singleRowData.address.suite}</TableCell>
+                  <TableCell>{singleRowData.phone}</TableCell>
+                  <TableCell>{singleRowData.website}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Collapse>
+        </TableCell>
+      </TableRow>
     </Fragment>
   )
 }

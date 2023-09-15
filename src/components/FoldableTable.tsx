@@ -20,10 +20,7 @@ const FoldableTable = ({ rowData }: PropType) => {
       component={Paper}
       sx={{
         maxWidth: '1200px',
-        minWidth: '800px',
-        '.MuiTableCell-root': {
-          padding: '10px'
-        }
+        minWidth: '800px'
       }}
     >
       <Table>
@@ -31,12 +28,11 @@ const FoldableTable = ({ rowData }: PropType) => {
           <TableRow>
             <TableCell />
             <TableCell>id</TableCell>
-            <TableCell>name</TableCell>
-            <TableCell>username</TableCell>
-            <TableCell>gender</TableCell>
-            <TableCell>age</TableCell>
-            <TableCell>email</TableCell>
-            <TableCell>phone</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Company</TableCell>
+            <TableCell>Industry</TableCell>
+            <TableCell>Gender</TableCell>
+            <TableCell>Age</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
