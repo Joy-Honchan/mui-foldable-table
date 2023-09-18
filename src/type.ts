@@ -25,6 +25,7 @@ export interface ColItemType {
     field: string
     label: string
     group?: string
+    type?: 'search'
 }
 
 export interface ColumnGroupType {

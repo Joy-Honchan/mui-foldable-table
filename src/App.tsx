@@ -19,7 +19,8 @@ function App() {
       },
       {
         field: 'name',
-        label: 'Name'
+        label: 'Name',
+        type: 'search'
       },
       {
         field: 'company.name',
