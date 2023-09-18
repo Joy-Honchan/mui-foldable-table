@@ -1,34 +1,31 @@
-import { Fragment, useState } from 'react'
+import { Fragment, memo, useMemo, useState } from 'react'
 import { Collapse, IconButton, TableCell, TableRow } from '@mui/material'
 import InnerTable from './InnerTable.tsx'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DataType, { ColItemType } from '../type.ts'
+import displayData from '../utils/displayData.ts'
 
 interface PropType {
   singleRowData: DataType
   columns: ColItemType[]
+  innerColumns: ColItemType[]
 }
 
-const FoldableRow = ({ singleRowData, columns }: PropType) => {
+const FoldableRow = ({ singleRowData, columns, innerColumns }: PropType) => {
   const [open, setOpen] = useState(false)
 
-  const displayData = (colName: string, rowData: DataType) => {
-    const fieldArr = colName.split('.')
-    const fieldData = rowData[fieldArr[0]]
-    if (typeof fieldData !== 'string' && typeof fieldData !== 'number') {
-      return fieldData[fieldArr[1]]
-    } else {
-      return fieldData
-    }
-  }
+  const innerRowData: Partial<DataType> = useMemo(() => {
+    const innerDataArr = innerColumns.map((item) => {
+      if (item.field.indexOf('.') === -1)
+        return { [item.field]: singleRowData[item.field] }
+      const fieldArr = item.field.split('.')
+      return { [fieldArr[0]]: singleRowData[fieldArr[0]] }
+    })
+    const innerDataObj = Object.assign({}, ...innerDataArr)
+    return innerDataObj
+  }, [singleRowData, innerColumns])
 
-  const innerRowData = {
-    address: singleRowData.address,
-    username: singleRowData.username,
-    email: singleRowData.email,
-    phone: singleRowData.phone
-  }
   return (
     <Fragment>
       <TableRow>
@@ -48,11 +45,10 @@ const FoldableRow = ({ singleRowData, columns }: PropType) => {
         ))}
       </TableRow>
       <TableRow>
-        <TableCell padding="none" colSpan={8}>
+        <TableCell padding="none" colSpan={columns.length + 1}>
           <Collapse in={open}>
-            <InnerTable<
-              Pick<DataType, 'address' | 'username' | 'email' | 'phone'>
-            >
+            <InnerTable
+              innerColumns={innerColumns}
               innerRowData={innerRowData}
             />
           </Collapse>
@@ -62,4 +58,4 @@ const FoldableRow = ({ singleRowData, columns }: PropType) => {
   )
 }
 
-export default FoldableRow
+export default memo(FoldableRow)

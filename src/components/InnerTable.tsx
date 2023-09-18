@@ -1,70 +1,66 @@
+import { useMemo } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
-import DataType from '../type.ts'
+import DataType, { ColItemType } from '../type.ts'
+import getColumnGroup from '../utils/getColumnGroup.ts'
+import displayData from '../utils/displayData.ts'
 
-interface PropType<K> {
-  innerRowData: K
+interface PropType {
+  innerRowData: Partial<DataType>
+  innerColumns: ColItemType[]
 }
 
-const InnerTable = <T extends Partial<DataType>>({
-  innerRowData
-}: PropType<T>) => {
+const InnerTable = ({ innerRowData, innerColumns }: PropType) => {
+  const innerColumnGroups = useMemo(() => getColumnGroup(innerColumns), [])
   return (
     <Table sx={{ backgroundColor: '#ededed' }}>
       <TableHead>
         <TableRow>
-          <TableCell colSpan={3} />
-          <TableCell
-            colSpan={3}
-            align="center"
-            sx={{
-              borderLeft: '2px solid #bcbcbc',
-              borderRight: '2px solid #bcbcbc'
-            }}
-          >
-            Address
-          </TableCell>
-          <TableCell colSpan={2} />
+          <TableCell />
+          {innerColumnGroups.map((group, index) =>
+            group.label ? (
+              <TableCell
+                key={index}
+                colSpan={group.colSpan}
+                align="center"
+                sx={{
+                  borderLeft: '2px solid #ffffff',
+                  borderRight: '2px solid #ffffff'
+                }}
+              >
+                {group.label}
+              </TableCell>
+            ) : (
+              <TableCell key={index} colSpan={group.colSpan} />
+            )
+          )}
         </TableRow>
         <TableRow>
-          <TableCell padding="checkbox" />
-          <TableCell>UserName</TableCell>
-          <TableCell>Email</TableCell>
-          <TableCell
-            sx={{
-              borderLeft: '2px solid #bcbcbc',
-              borderRight: '2px solid #bcbcbc'
-            }}
-          >
-            City
-          </TableCell>
-          <TableCell
-            sx={{
-              borderLeft: '2px solid #bcbcbc',
-              borderRight: '2px solid #bcbcbc'
-            }}
-          >
-            Street
-          </TableCell>
-          <TableCell
-            sx={{
-              borderLeft: '2px solid #bcbcbc',
-              borderRight: '2px solid #bcbcbc'
-            }}
-          >
-            Suite
-          </TableCell>
-          <TableCell>Phone</TableCell>
+          <TableCell />
+          {innerColumns.map((item, index) => (
+            <TableCell
+              key={index}
+              sx={
+                item.group
+                  ? {
+                      borderLeft: '2px solid #ffffff',
+                      borderRight: '2px solid #ffffff'
+                    }
+                  : null
+              }
+            >
+              {item.label}
+            </TableCell>
+          ))}
         </TableRow>
       </TableHead>
       <TableBody>
         <TableRow>
-          <TableCell padding="checkbox" />
-          <TableCell>{innerRowData.username}</TableCell>
-          <TableCell>{innerRowData.email}</TableCell>
-          <TableCell>{innerRowData.address?.city}</TableCell>
-          <TableCell>{innerRowData.address?.street}</TableCell>
-          <TableCell>{innerRowData.address?.suite}</TableCell>
-          <TableCell>{innerRowData.phone}</TableCell>
+          <TableCell />
+          {innerColumns.map((item, index) => (
+            <TableCell key={index}>
+              {displayData(item.field, innerRowData)}
+            </TableCell>
+          ))}
         </TableRow>
       </TableBody>
     </Table>

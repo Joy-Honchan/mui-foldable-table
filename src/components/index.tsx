@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import {
   Paper,
   TableContainer,
@@ -8,7 +8,7 @@ import {
   TableRow,
   TableCell
 } from '@mui/material'
-import FoldableRow from './FoldableRow'
+import FoldableRow from './FoldableRow.tsx'
 import DataType, { ColItemType } from '../type.ts'
 import getColumnGroup from '../utils/getColumnGroup.ts'
 
@@ -19,8 +19,7 @@ interface PropType {
 }
 
 const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
-  const columnGroups = useMemo(() => getColumnGroup(columns), [])
-  const innerColumnGroups = useMemo(() => getColumnGroup(innerColumns), [])
+  const columnGroups = useMemo(() => getColumnGroup(columns), [columns])
   return (
     <TableContainer
       component={Paper}
@@ -71,8 +70,13 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rowData?.map((item) => (
-            <FoldableRow key={item.id} singleRowData={item} columns={columns} />
+          {rowData?.map((item, index) => (
+            <FoldableRow
+              key={index}
+              singleRowData={item}
+              columns={columns}
+              innerColumns={innerColumns}
+            />
           ))}
         </TableBody>
       </Table>
@@ -80,4 +84,4 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
   )
 }
 
-export default FoldableTable
+export default memo(FoldableTable)

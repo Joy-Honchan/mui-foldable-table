@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import FoldableTable from './components/FoldableTable'
+import FoldableTable from './components'
 import DataType, { ColItemType } from './type'
 import data from './fakeData.json'
 
