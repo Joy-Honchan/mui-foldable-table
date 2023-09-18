@@ -1,13 +1,11 @@
 import { useState, useEffect, useMemo } from 'react'
-import FoldableTable from './components'
-import DataType, { ColItemType } from './type'
-import data from './fakeData.json'
-
+import FoldableTable from './components/FoldableTable'
+import DataType, { ColItemType, SearchParamType } from './type'
+import fetchFakeDate from './utils/fetchFakeData'
 import './App.css'
 
-const DATA = data as DataType[]
-
 function App() {
+  const [searchParams, setSearchParams] = useState<SearchParamType>({})
   const [receivedData, setReceivedData] = useState<DataType[] | undefined>(
     undefined
   )
@@ -81,10 +79,15 @@ function App() {
   )
 
   useEffect(() => {
+    // const fetchData = async () => {
+    //   const response = await new Promise<DataType[]>((resolve) =>
+    //     setTimeout(() => resolve(DATA), 1000)
+    //   )
+    //   setReceivedData(response)
+    // }
+    // fetchData()
     const fetchData = async () => {
-      const response = await new Promise<DataType[]>((resolve) =>
-        setTimeout(() => resolve(DATA), 1000)
-      )
+      const response = await fetchFakeDate(searchParams)
       setReceivedData(response)
     }
     fetchData()

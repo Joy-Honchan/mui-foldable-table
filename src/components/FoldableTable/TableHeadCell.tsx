@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react'
 import { IconButton, TableCell } from '@mui/material'
-import { ColItemType } from '../type'
+import { ColItemType } from '../../type'
 import SearchIcon from '@mui/icons-material/Search'
 
 interface PropType {

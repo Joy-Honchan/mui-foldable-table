@@ -3,8 +3,8 @@ import { Collapse, IconButton, TableCell, TableRow } from '@mui/material'
 import InnerTable from './InnerTable.tsx'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import DataType, { ColItemType } from '../type.ts'
-import displayData from '../utils/displayData.ts'
+import DataType, { ColItemType } from '../../type.ts'
+import displayData from '../../utils/displayData.ts'
 
 interface PropType {
   singleRowData: DataType

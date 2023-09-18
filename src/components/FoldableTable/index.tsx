@@ -1,4 +1,11 @@
-import { memo, useMemo, useState, MouseEvent } from 'react'
+import {
+  memo,
+  useMemo,
+  useState,
+  MouseEvent,
+  Dispatch,
+  SetStateAction
+} from 'react'
 import {
   Paper,
   TableContainer,
@@ -11,8 +18,8 @@ import {
   Box
 } from '@mui/material'
 import FoldableRow from './FoldableRow.tsx'
-import DataType, { ColItemType } from '../type.ts'
-import getColumnGroup from '../utils/getColumnGroup.ts'
+import DataType, { ColItemType, SearchParamType } from '../../type.ts'
+import getColumnGroup from '../../utils/getColumnGroup.ts'
 import TableHeadCell from './TableHeadCell.tsx'
 import PopoverContent from './PopoverContent.tsx'
 
@@ -38,6 +45,11 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  // const handleSearch = (field: string, value: string) => {
+  //   const prevFieldData = searchParams.field
+  //   console.log('prevFieldData', prevFieldData)
+  // }
   return (
     <>
       <TableContainer
@@ -107,7 +119,10 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
         }}
       >
         <Box display="flex" sx={{ m: 1.5, width: '25ch' }}>
-          <PopoverContent colItem={popoverColItem} />
+          <PopoverContent
+            colItem={popoverColItem}
+            // handleSearch={handleSearch}
+          />
         </Box>
       </Popover>
     </>

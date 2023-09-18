@@ -5,14 +5,16 @@ import {
   InputLabel,
   OutlinedInput
 } from '@mui/material'
-import { ColItemType } from '../type'
+import { ColItemType } from '../../type'
 import CloseIcon from '@mui/icons-material/Close'
 
 interface PropType {
   colItem?: ColItemType
+  // handleSearch: (field: string, value: string) => void
 }
 const PopoverContent = ({ colItem }: PropType) => {
   if (!colItem) return null
+
   return (
     <FormControl variant="outlined" size="small">
       <InputLabel size="small" htmlFor={`${colItem.field}-input`}>

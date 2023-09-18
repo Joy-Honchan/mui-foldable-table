@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
-import DataType, { ColItemType } from '../type.ts'
-import getColumnGroup from '../utils/getColumnGroup.ts'
-import displayData from '../utils/displayData.ts'
+import DataType, { ColItemType } from '../../type.ts'
+import getColumnGroup from '../../utils/getColumnGroup.ts'
+import displayData from '../../utils/displayData.ts'
 
 interface PropType {
   innerRowData: Partial<DataType>

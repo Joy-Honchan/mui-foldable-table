@@ -1,5 +1,9 @@
+export interface SearchParamType {
+    [x: string]: string | number
+}
+
 export default interface DataType {
-    [x: string]: string | number | { [x: string]: string | number }
+    [x: string]: string | number | SearchParamType
     // id: number | string,
     // name: string,
     // username: string,
