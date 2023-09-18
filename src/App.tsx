@@ -79,19 +79,12 @@ function App() {
   )
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const response = await new Promise<DataType[]>((resolve) =>
-    //     setTimeout(() => resolve(DATA), 1000)
-    //   )
-    //   setReceivedData(response)
-    // }
-    // fetchData()
     const fetchData = async () => {
       const response = await fetchFakeDate(searchParams)
       setReceivedData(response)
     }
     fetchData()
-  }, [])
+  }, [searchParams])
 
   return (
     <>
@@ -100,6 +93,8 @@ function App() {
           rowData={receivedData}
           columns={columns}
           innerColumns={innerColumns}
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
         />
       ) : (
         <div>Loading...</div>

@@ -27,9 +27,16 @@ interface PropType {
   columns: ColItemType[]
   innerColumns: ColItemType[]
   rowData: DataType[]
+  searchParams: SearchParamType
+  setSearchParams: Dispatch<SetStateAction<SearchParamType>>
 }
 
-const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
+const FoldableTable = ({
+  rowData,
+  columns,
+  innerColumns,
+  setSearchParams
+}: PropType) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const columnGroups = useMemo(() => getColumnGroup(columns), [columns])
 
@@ -46,10 +53,11 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
     setAnchorEl(null)
   }
 
-  // const handleSearch = (field: string, value: string) => {
-  //   const prevFieldData = searchParams.field
-  //   console.log('prevFieldData', prevFieldData)
-  // }
+  const handleSearch = (field: string, value: string) => {
+    setSearchParams({
+      [field]: value
+    })
+  }
   return (
     <>
       <TableContainer
@@ -121,7 +129,7 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
         <Box display="flex" sx={{ m: 1.5, width: '25ch' }}>
           <PopoverContent
             colItem={popoverColItem}
-            // handleSearch={handleSearch}
+            handleSearch={handleSearch}
           />
         </Box>
       </Popover>

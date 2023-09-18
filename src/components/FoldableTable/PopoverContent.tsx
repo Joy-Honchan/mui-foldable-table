@@ -1,3 +1,4 @@
+// import { useLocation } from 'react-router-dom'
 import {
   FormControl,
   IconButton,
@@ -7,13 +8,18 @@ import {
 } from '@mui/material'
 import { ColItemType } from '../../type'
 import CloseIcon from '@mui/icons-material/Close'
+import { ChangeEvent } from 'react'
 
 interface PropType {
   colItem?: ColItemType
-  // handleSearch: (field: string, value: string) => void
+  handleSearch: (field: string, value: string) => void
 }
-const PopoverContent = ({ colItem }: PropType) => {
+const PopoverContent = ({ colItem, handleSearch }: PropType) => {
   if (!colItem) return null
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    handleSearch(colItem.field, e.target.value)
+    // console.log('popovercontent', colItem.field, e.target.value)
+  }
 
   return (
     <FormControl variant="outlined" size="small">
@@ -21,6 +27,7 @@ const PopoverContent = ({ colItem }: PropType) => {
         {colItem.label}
       </InputLabel>
       <OutlinedInput
+        onChange={handleChange}
         id={`${colItem.field}-input`}
         size="small"
         type="text"
