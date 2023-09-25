@@ -4,7 +4,7 @@ export interface SearchParamType {
 
 export default interface DataType {
     [x: string]: string | number | SearchParamType
-    // id: number | string,
+    id: number,
     // name: string,
     // username: string,
     // email: string,

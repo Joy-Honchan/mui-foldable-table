@@ -88,6 +88,7 @@ function App() {
 
   return (
     <>
+      <h1>MUI Foldable Table with Search Function</h1>
       {receivedData ? (
         <FoldableTable
           rowData={receivedData}

@@ -37,15 +37,27 @@ const FoldableTable = ({
   innerColumns,
   setSearchParams
 }: PropType) => {
+  const [openRowId, setOpenRowId] = useState<number | null>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const columnGroups = useMemo(() => getColumnGroup(columns), [columns])
 
-  const open = Boolean(anchorEl)
+  const popoverOpen = Boolean(anchorEl)
   const popoverId = anchorEl ? anchorEl.id : undefined
   const popoverColItem = useMemo(
     () => columns.find((item) => item.field === popoverId),
     [columns, popoverId]
   )
+
+  const handleRowOpen = (id: DataType['id']) => {
+    return (e: MouseEvent<HTMLButtonElement>) => {
+      if (openRowId === id) {
+        setOpenRowId(null)
+      } else {
+        setOpenRowId(id)
+      }
+    }
+  }
+
   const handleIconClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
@@ -64,7 +76,10 @@ const FoldableTable = ({
         component={Paper}
         sx={{
           maxWidth: '1200px',
-          minWidth: '800px'
+          minWidth: '800px',
+          '.MuiTableCell-root': {
+            fontSize: '1rem'
+          }
         }}
       >
         <Table>
@@ -101,20 +116,25 @@ const FoldableTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rowData?.map((item, index) => (
-              <FoldableRow
-                key={index}
-                singleRowData={item}
-                columns={columns}
-                innerColumns={innerColumns}
-              />
-            ))}
+            {rowData?.map((item, index) => {
+              const open = openRowId === item.id
+              return (
+                <FoldableRow
+                  open={open}
+                  handleRowOpen={handleRowOpen(item.id)}
+                  key={index}
+                  singleRowData={item}
+                  columns={columns}
+                  innerColumns={innerColumns}
+                />
+              )
+            })}
           </TableBody>
         </Table>
       </TableContainer>
       <Popover
         id={popoverId}
-        open={open}
+        open={popoverOpen}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{

@@ -1,4 +1,4 @@
-import { Fragment, memo, useMemo, useState } from 'react'
+import { Fragment, memo, useMemo, useState, MouseEvent } from 'react'
 import { Collapse, IconButton, TableCell, TableRow } from '@mui/material'
 import InnerTable from './InnerTable.tsx'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -7,13 +7,21 @@ import DataType, { ColItemType } from '../../type.ts'
 import displayData from '../../utils/displayData.ts'
 
 interface PropType {
+  open: boolean
+  handleRowOpen: (e: MouseEvent<HTMLButtonElement>) => void
   singleRowData: DataType
   columns: ColItemType[]
   innerColumns: ColItemType[]
 }
 
-const FoldableRow = ({ singleRowData, columns, innerColumns }: PropType) => {
-  const [open, setOpen] = useState(false)
+const FoldableRow = ({
+  open,
+  handleRowOpen,
+  singleRowData,
+  columns,
+  innerColumns
+}: PropType) => {
+  // const [open, setOpen] = useState(false)
 
   const innerRowData: Partial<DataType> = useMemo(() => {
     const innerDataArr = innerColumns.map((item) => {
@@ -33,7 +41,7 @@ const FoldableRow = ({ singleRowData, columns, innerColumns }: PropType) => {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
+            onClick={handleRowOpen}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
