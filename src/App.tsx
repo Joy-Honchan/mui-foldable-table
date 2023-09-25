@@ -1,11 +1,23 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useContext } from 'react'
 import FoldableTable from './components/FoldableTable'
-import DataType, { ColItemType, SearchParamType } from './type'
+import DataType, { ColItemType } from './type'
 import fetchFakeDate from './utils/fetchFakeData'
 import './App.css'
+import SearchParamProvider, {
+  SearchParamContext
+} from './context/searchParamContext'
 
 function App() {
-  const [searchParams, setSearchParams] = useState<SearchParamType>({})
+  return (
+    <SearchParamProvider>
+      <h1>MUI Foldable Table with Search Function</h1>
+      <TableContainer />
+    </SearchParamProvider>
+  )
+}
+
+const TableContainer = () => {
+  const { searchParams } = useContext(SearchParamContext)
   const [receivedData, setReceivedData] = useState<DataType[] | undefined>(
     undefined
   )
@@ -88,14 +100,13 @@ function App() {
 
   return (
     <>
-      <h1>MUI Foldable Table with Search Function</h1>
       {receivedData ? (
         <FoldableTable
           rowData={receivedData}
           columns={columns}
           innerColumns={innerColumns}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
+          // searchParams={searchParams}
+          // setSearchParams={setSearchParams}
         />
       ) : (
         <div>Loading...</div>

@@ -8,17 +8,28 @@ import {
 } from '@mui/material'
 import { ColItemType } from '../../type'
 import CloseIcon from '@mui/icons-material/Close'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useContext, useMemo, useRef } from 'react'
+import { SearchParamContext } from '../../context/searchParamContext'
 
 interface PropType {
   colItem?: ColItemType
   handleSearch: (field: string, value: string) => void
+  clearSearch: (field: string) => void
 }
-const PopoverContent = ({ colItem, handleSearch }: PropType) => {
+const PopoverContent = ({ colItem, handleSearch, clearSearch }: PropType) => {
   if (!colItem) return null
+  const { searchParams, setSearchParams: _ } = useContext(SearchParamContext)
+  const value = useMemo(
+    () => searchParams[colItem.field],
+    [searchParams, colItem.field]
+  )
+  const inpuRef = useRef<HTMLInputElement>(null)
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleSearch(colItem.field, e.target.value)
     // console.log('popovercontent', colItem.field, e.target.value)
+  }
+  const handleClear = () => {
+    clearSearch(colItem.field)
   }
 
   return (
@@ -27,13 +38,15 @@ const PopoverContent = ({ colItem, handleSearch }: PropType) => {
         {colItem.label}
       </InputLabel>
       <OutlinedInput
+        ref={inpuRef}
+        value={value}
         onChange={handleChange}
         id={`${colItem.field}-input`}
         size="small"
         type="text"
         endAdornment={
           <InputAdornment position="end">
-            <IconButton onClick={() => console.log('clicked')} edge="end">
+            <IconButton onClick={handleClear} edge="end">
               <CloseIcon />
             </IconButton>
           </InputAdornment>

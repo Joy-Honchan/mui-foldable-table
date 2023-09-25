@@ -10,7 +10,7 @@ export default async function fetchFakeDate(searchParam: SearchParamType): Promi
         if (currData.toLowerCase().includes(param[1].toLowerCase())) return true
     }))
     const response = await new Promise<DataType[]>((resolve) =>
-        setTimeout(() => resolve(filteredData), 1000)
+        setTimeout(() => resolve(filteredData), 500)
     )
     return response
 }

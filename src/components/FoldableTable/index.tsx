@@ -1,11 +1,4 @@
-import {
-  memo,
-  useMemo,
-  useState,
-  MouseEvent,
-  Dispatch,
-  SetStateAction
-} from 'react'
+import { memo, useMemo, useState, MouseEvent, useContext } from 'react'
 import {
   Paper,
   TableContainer,
@@ -22,21 +15,25 @@ import DataType, { ColItemType, SearchParamType } from '../../type.ts'
 import getColumnGroup from '../../utils/getColumnGroup.ts'
 import TableHeadCell from './TableHeadCell.tsx'
 import PopoverContent from './PopoverContent.tsx'
+import { SearchParamContext } from '../../context/searchParamContext.tsx'
 
 interface PropType {
   columns: ColItemType[]
   innerColumns: ColItemType[]
   rowData: DataType[]
-  searchParams: SearchParamType
-  setSearchParams: Dispatch<SetStateAction<SearchParamType>>
+  searchParams?: SearchParamType
+  // setSearchParams?: Dispatch<SetStateAction<SearchParamType>>
+  // setSearchParams: SetURLSearchParams
 }
 
 const FoldableTable = ({
   rowData,
   columns,
-  innerColumns,
-  setSearchParams
-}: PropType) => {
+  innerColumns
+}: // setSearchParams
+PropType) => {
+  const { searchParams: _, setSearchParams } = useContext(SearchParamContext)
+
   const [openRowId, setOpenRowId] = useState<number | null>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const columnGroups = useMemo(() => getColumnGroup(columns), [columns])
@@ -49,7 +46,7 @@ const FoldableTable = ({
   )
 
   const handleRowOpen = (id: DataType['id']) => {
-    return (e: MouseEvent<HTMLButtonElement>) => {
+    return (_: MouseEvent<HTMLButtonElement>) => {
       if (openRowId === id) {
         setOpenRowId(null)
       } else {
@@ -65,11 +62,21 @@ const FoldableTable = ({
     setAnchorEl(null)
   }
 
-  const handleSearch = (field: string, value: string) => {
-    setSearchParams({
-      [field]: value
-    })
+  const clearSearch = (field: string) => {
+    setSearchParams((prev) =>
+      Object.entries(prev)
+        .filter(([key, _]) => key !== field)
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+    )
   }
+  const handleSearch = (field: string, value: string) => {
+    if (!value) {
+      clearSearch(field)
+    } else {
+      setSearchParams((prev) => ({ ...prev, [field]: value }))
+    }
+  }
+
   return (
     <>
       <TableContainer
@@ -149,7 +156,9 @@ const FoldableTable = ({
         <Box display="flex" sx={{ m: 1.5, width: '25ch' }}>
           <PopoverContent
             colItem={popoverColItem}
+            // searchParams={searchParams}
             handleSearch={handleSearch}
+            clearSearch={clearSearch}
           />
         </Box>
       </Popover>
