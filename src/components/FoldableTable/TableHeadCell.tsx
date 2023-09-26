@@ -8,17 +8,16 @@ interface PropType {
   handleIconClick: (event: MouseEvent<HTMLButtonElement>) => void
 }
 const TableHeadCell = ({ colItem, handleIconClick }: PropType) => {
-  const TypeIcon =
-    colItem.type === 'search' ? (
-      <IconButton
-        onClick={handleIconClick}
-        id={colItem.field}
-        aria-label={`search-${colItem.field}`}
-        size="small"
-      >
-        <SearchIcon fontSize="inherit" />
-      </IconButton>
-    ) : null
+  const TypeIcon = colItem.type ? (
+    <IconButton
+      onClick={handleIconClick}
+      id={colItem.field}
+      aria-label={`search-${colItem.field}`}
+      size="small"
+    >
+      <SearchIcon fontSize="inherit" />
+    </IconButton>
+  ) : null
   return (
     <TableCell
       sx={

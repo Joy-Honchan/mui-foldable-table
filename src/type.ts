@@ -29,7 +29,10 @@ export interface ColItemType {
     field: string
     label: string
     group?: string
-    type?: 'search'
+    type?: 'search' | 'slider'
+    min?: number
+    max?: number
+    marks?: { value: number, label: string }[]
 }
 
 export interface ColumnGroupType {

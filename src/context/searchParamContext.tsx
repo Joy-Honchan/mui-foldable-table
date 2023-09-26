@@ -11,7 +11,9 @@ export const SearchParamContext = createContext({
 const SearchParamProvider = ({ children }: { children: ReactNode }) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const nameParam = searchParams.get('name')
-  const param = { name: nameParam || '' }
+  const ageParam = Number(searchParams.get('age'))
+  const param = { name: nameParam || '', age: ageParam || 0 }
+
   const clearSearchParam = (field: string) => {
     setSearchParams((prev) =>
       Object.entries(prev)
@@ -23,7 +25,11 @@ const SearchParamProvider = ({ children }: { children: ReactNode }) => {
     if (!value) {
       clearSearchParam(field)
     } else {
-      setSearchParams((prev) => ({ ...prev, [field]: value }))
+      // setSearchParams((prev) => ({ ...prev, [field]: value }))
+      setSearchParams((prev) => {
+        prev.set(field, value)
+        return prev
+      })
     }
   }
   return (

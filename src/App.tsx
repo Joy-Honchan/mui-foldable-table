@@ -44,7 +44,52 @@ const TableContainer = () => {
       },
       {
         field: 'age',
-        label: 'Age'
+        label: 'Age',
+        type: 'slider',
+        min: 26,
+        max: 35,
+        marks: [
+          {
+            value: 26,
+            label: '26'
+          },
+          {
+            value: 27,
+            label: '27'
+          },
+          {
+            value: 28,
+            label: '28'
+          },
+          {
+            value: 29,
+            label: '29'
+          },
+          {
+            value: 30,
+            label: '30'
+          },
+          {
+            value: 31,
+            label: '31'
+          },
+          {
+            value: 32,
+            label: '32'
+          },
+          {
+            value: 33,
+            label: '33'
+          },
+          {
+            value: 34,
+            label: '34'
+          },
+          {
+            value: 35,
+            label: '35'
+          }
+        ]
       },
       {
         field: 'gender',
