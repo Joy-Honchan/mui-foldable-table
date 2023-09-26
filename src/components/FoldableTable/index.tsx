@@ -1,4 +1,4 @@
-import { memo, useMemo, useState, MouseEvent, useContext } from 'react'
+import { memo, useMemo, useState, MouseEvent } from 'react'
 import {
   Paper,
   TableContainer,
@@ -7,33 +7,22 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Popover,
-  Box
+  Popover
 } from '@mui/material'
 import FoldableRow from './FoldableRow.tsx'
 import DataType, { ColItemType, SearchParamType } from '../../type.ts'
 import getColumnGroup from '../../utils/getColumnGroup.ts'
 import TableHeadCell from './TableHeadCell.tsx'
 import PopoverContent from './PopoverContent.tsx'
-import { SearchParamContext } from '../../context/searchParamContext.tsx'
 
 interface PropType {
   columns: ColItemType[]
   innerColumns: ColItemType[]
   rowData: DataType[]
   searchParams?: SearchParamType
-  // setSearchParams?: Dispatch<SetStateAction<SearchParamType>>
-  // setSearchParams: SetURLSearchParams
 }
 
-const FoldableTable = ({
-  rowData,
-  columns,
-  innerColumns
-}: // setSearchParams
-PropType) => {
-  const { searchParams: _, setSearchParams } = useContext(SearchParamContext)
-
+const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
   const [openRowId, setOpenRowId] = useState<number | null>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const columnGroups = useMemo(() => getColumnGroup(columns), [columns])
@@ -60,21 +49,6 @@ PropType) => {
   }
   const handleClose = () => {
     setAnchorEl(null)
-  }
-
-  const clearSearch = (field: string) => {
-    setSearchParams((prev) =>
-      Object.entries(prev)
-        .filter(([key, _]) => key !== field)
-        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
-    )
-  }
-  const handleSearch = (field: string, value: string) => {
-    if (!value) {
-      clearSearch(field)
-    } else {
-      setSearchParams((prev) => ({ ...prev, [field]: value }))
-    }
   }
 
   return (
@@ -153,14 +127,7 @@ PropType) => {
           horizontal: 'center'
         }}
       >
-        <Box display="flex" sx={{ m: 1.5, width: '25ch' }}>
-          <PopoverContent
-            colItem={popoverColItem}
-            // searchParams={searchParams}
-            handleSearch={handleSearch}
-            clearSearch={clearSearch}
-          />
-        </Box>
+        <PopoverContent colItem={popoverColItem} />
       </Popover>
     </>
   )

@@ -105,8 +105,6 @@ const TableContainer = () => {
           rowData={receivedData}
           columns={columns}
           innerColumns={innerColumns}
-          // searchParams={searchParams}
-          // setSearchParams={setSearchParams}
         />
       ) : (
         <div>Loading...</div>
