@@ -10,6 +10,7 @@ interface PropType {
 const TableHeadCell = ({ colItem, handleIconClick }: PropType) => {
   const TypeIcon = colItem.type ? (
     <IconButton
+      color="inherit"
       onClick={handleIconClick}
       id={colItem.field}
       aria-label={`search-${colItem.field}`}

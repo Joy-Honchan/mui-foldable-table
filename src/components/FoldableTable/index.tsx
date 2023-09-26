@@ -56,6 +56,7 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
       <TableContainer
         component={Paper}
         sx={{
+          minHeight: '689px',
           maxWidth: '1200px',
           minWidth: '800px',
           '.MuiTableCell-root': {
@@ -64,8 +65,13 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
         }}
       >
         <Table>
-          <TableHead sx={{ backgroundColor: '#d8d8d8' }}>
-            <TableRow>
+          <TableHead>
+            <TableRow
+              sx={(theme) => ({
+                backgroundColor: theme.palette.primary.dark,
+                color: theme.palette.primary.contrastText
+              })}
+            >
               <TableCell />
               {columnGroups.map((group, index) =>
                 group.label ? (
@@ -85,7 +91,12 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
                 )
               )}
             </TableRow>
-            <TableRow>
+            <TableRow
+              sx={(theme) => ({
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.primary.contrastText
+              })}
+            >
               <TableCell />
               {columns.map((item, index) => (
                 <TableHeadCell

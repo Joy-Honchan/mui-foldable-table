@@ -6,12 +6,35 @@ import './App.css'
 import SearchParamProvider, {
   SearchParamContext
 } from './context/searchParamContext'
+import ThemeProvider from './context/ThemeContext'
+import { Box, Typography } from '@mui/material'
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 function App() {
   return (
     <SearchParamProvider>
-      <h1>MUI Foldable Table with Search Function</h1>
-      <TableContainer />
+      <ThemeProvider>
+        <Box
+          sx={(theme) => ({
+            maxHeight: 'max-content',
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 1,
+            backgroundColor: theme.palette.background.default
+          })}
+        >
+          <Typography variant="h2" sx={{ fontWeight: 'medium' }}>
+            MUI Foldable Table with Search Function
+          </Typography>
+          <TableContainer />
+        </Box>
+      </ThemeProvider>
     </SearchParamProvider>
   )
 }

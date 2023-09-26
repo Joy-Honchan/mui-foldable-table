@@ -12,9 +12,14 @@ interface PropType {
 const InnerTable = ({ innerRowData, innerColumns }: PropType) => {
   const innerColumnGroups = useMemo(() => getColumnGroup(innerColumns), [])
   return (
-    <Table sx={{ backgroundColor: '#ededed' }}>
+    <Table>
       <TableHead>
-        <TableRow>
+        <TableRow
+          sx={(theme) => ({
+            backgroundColor: theme.palette.secondary.dark,
+            color: theme.palette.secondary.contrastText
+          })}
+        >
           <TableCell />
           {innerColumnGroups.map((group, index) =>
             group.label ? (
@@ -34,7 +39,12 @@ const InnerTable = ({ innerRowData, innerColumns }: PropType) => {
             )
           )}
         </TableRow>
-        <TableRow>
+        <TableRow
+          sx={(theme) => ({
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.secondary.contrastText
+          })}
+        >
           <TableCell />
           {innerColumns.map((item, index) => (
             <TableCell
@@ -54,7 +64,12 @@ const InnerTable = ({ innerRowData, innerColumns }: PropType) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        <TableRow>
+        <TableRow
+          sx={(theme) => ({
+            backgroundColor: theme.palette.secondary.light,
+            color: theme.palette.secondary.contrastText
+          })}
+        >
           <TableCell />
           {innerColumns.map((item, index) => (
             <TableCell key={index}>
