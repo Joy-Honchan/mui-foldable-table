@@ -1,5 +1,9 @@
 import { ReactNode, createContext, useMemo, useState } from 'react'
-import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material'
+import {
+  createTheme,
+  ThemeProvider as MuiThemeProvider,
+  Theme
+} from '@mui/material'
 import { indigo, yellow, grey, lightBlue } from '@mui/material/colors'
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} })
@@ -27,7 +31,7 @@ const generateTheme = (mode: 'light' | 'dark') => {
         // mode,
         primary: {
           dark: lightBlue[700],
-          main: lightBlue[400],
+          main: lightBlue[500],
           contrastText: '#ffffff'
         },
         secondary: {
@@ -62,6 +66,7 @@ const generateTheme = (mode: 'light' | 'dark') => {
         primary: {
           dark: indigo[900],
           main: indigo[600],
+          light: indigo['A200'],
           contrastText: '#ffffff'
         },
         secondary: {
@@ -117,6 +122,13 @@ const generateTheme = (mode: 'light' | 'dark') => {
             root: {
               color: 'inherit'
             }
+          }
+        },
+        MuiSlider: {
+          styleOverrides: {
+            root: ({ theme }: { theme: Theme }) => ({
+              color: theme.palette.primary.light
+            })
           }
         }
       }

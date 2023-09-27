@@ -137,7 +137,7 @@ const SliderInputContent = ({
   if (typeof value !== 'number') return null
 
   const handleSearchStart = () => {
-    handleSearchParam(field, String(min || 26))
+    handleSearchParam(field, String(min))
   }
   const handleChange = (_: Event, newValue: number | number[]) => {
     handleSearchParam(field, String(newValue))
@@ -149,6 +149,7 @@ const SliderInputContent = ({
     <>
       <Typography sx={{ flexGrow: 1 }}>{label}</Typography>
       <Slider
+        step={5}
         disabled={value === 0}
         sx={{ mx: 1 }}
         aria-label={`${field}-slider`}

@@ -20,7 +20,7 @@ const filterFunc = (field: string, keyword: string | number, originData: DataTyp
     }
     if (typeof currData === "number" && typeof keyword === "number") {
         if (keyword === 0) return true
-        if (currData === keyword) return true
+        if (currData <= keyword && currData > keyword - 5) return true
         return false
     }
     return false
