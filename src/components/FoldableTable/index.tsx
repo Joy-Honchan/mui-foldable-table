@@ -56,9 +56,10 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
       <TableContainer
         component={Paper}
         sx={{
+          backgroundColor: 'background.paper',
           minHeight: '689px',
-          maxWidth: '1200px',
-          minWidth: '800px',
+          // maxWidth: '1200px',
+          // minWidth: '800px',
           '.MuiTableCell-root': {
             fontSize: '1rem'
           }

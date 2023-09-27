@@ -92,7 +92,11 @@ const TextInputContent = ({
   }
   return (
     <FormControl variant="outlined" size="small">
-      <InputLabel size="small" htmlFor={`${field}-input`}>
+      <InputLabel
+        size="small"
+        htmlFor={`${field}-input`}
+        sx={{ '&.Mui-focused': { color: 'inherit' } }}
+      >
         {label}
       </InputLabel>
       <OutlinedInput

@@ -12,6 +12,7 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import ModeToggle from './components/ModeToggle'
 
 function App() {
   return (
@@ -26,12 +27,17 @@ function App() {
             justifyContent: 'center',
             alignItems: 'center',
             gap: 1,
-            backgroundColor: theme.palette.background.default
+            backgroundColor: theme.palette.background.default,
+            px: '5%'
           })}
         >
-          <Typography variant="h2" sx={{ fontWeight: 'medium' }}>
+          <Typography
+            variant="h2"
+            sx={{ fontWeight: 'medium', color: 'text.primary' }}
+          >
             MUI Foldable Table with Search Function
           </Typography>
+          <ModeToggle />
           <TableContainer />
         </Box>
       </ThemeProvider>
