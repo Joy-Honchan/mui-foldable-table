@@ -10,7 +10,7 @@ import {
   Slider,
   Typography
 } from '@mui/material'
-import { ColItemType } from '../../type'
+import { ColItemType, SliderColItemType } from '../../type'
 import CloseIcon from '@mui/icons-material/Close'
 import { SearchParamContext } from '../../context/searchParamContext'
 
@@ -18,7 +18,7 @@ interface PropType {
   colItem?: ColItemType
 }
 const PopoverContent = ({ colItem }: PropType) => {
-  if (!colItem) return null
+  if (!colItem || !('type' in colItem)) return null
   // const { searchParams, clearSearchParam, handleSearchParam } =
   //   useContext(SearchParamContext)
   // const value = useMemo(
@@ -127,9 +127,9 @@ const SliderInputContent = ({
 }: {
   field: ColItemType['field']
   label: ColItemType['label']
-  marks: ColItemType['marks']
-  min: ColItemType['min']
-  max: ColItemType['max']
+  marks: SliderColItemType['marks']
+  min: SliderColItemType['min']
+  max: SliderColItemType['max']
 }) => {
   const { searchParams, clearSearchParam, handleSearchParam } =
     useContext(SearchParamContext)

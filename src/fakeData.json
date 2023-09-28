@@ -10,7 +10,13 @@
             "city": "Boston"
         },
         "phone": "555-123-4567",
-        "website": "www.johndoe.com",
+        "personality": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
         "company": {
             "name": "ABC Inc.",
             "industry": "Technology"
@@ -29,7 +35,13 @@
             "city": "Philadelphia"
         },
         "phone": "555-987-6543",
-        "website": "",
+        "personality": [
+            0,
+            5,
+            2,
+            3,
+            6
+        ],
         "company": {
             "name": "MarketingMasters",
             "industry": "Marketing"
@@ -48,7 +60,13 @@
             "city": "Miami"
         },
         "phone": "555-567-8901",
-        "website": "www.alicejohnson.com",
+        "personality": [
+            7,
+            8,
+            9,
+            4,
+            10
+        ],
         "company": {
             "name": "DataTech",
             "industry": "Data Science"
@@ -67,7 +85,13 @@
             "city": "Boston"
         },
         "phone": "555-234-5678",
-        "website": "",
+        "personality": [
+            0,
+            1,
+            4,
+            6,
+            11
+        ],
         "company": {
             "name": "ABC Inc.",
             "industry": "Technology"
@@ -86,7 +110,13 @@
             "city": "Philadelphia"
         },
         "phone": "555-345-6789",
-        "website": "",
+        "personality": [
+            7,
+            1,
+            2,
+            10,
+            11
+        ],
         "company": {
             "name": "MarketingMasters",
             "industry": "Marketing"
@@ -105,7 +135,13 @@
             "city": "Miami"
         },
         "phone": "555-789-0123",
-        "website": "www.davidlee.com",
+        "personality": [
+            0,
+            1,
+            3,
+            9,
+            12
+        ],
         "company": {
             "name": "DataTech",
             "industry": "Data Science"
@@ -124,7 +160,13 @@
             "city": "Philadelphia"
         },
         "phone": "555-456-7890",
-        "website": "www.gracetaylor.com",
+        "personality": [
+            7,
+            8,
+            9,
+            10,
+            12
+        ],
         "company": {
             "name": "MarketingMasters",
             "industry": "Marketing"
@@ -143,7 +185,13 @@
             "city": "Miami"
         },
         "phone": "555-890-1234",
-        "website": "www.michaelwhite.com",
+        "personality": [
+            0,
+            1,
+            4,
+            6,
+            12
+        ],
         "company": {
             "name": "DataTech",
             "industry": "Data Science"
@@ -162,7 +210,13 @@
             "city": "Boston"
         },
         "phone": "555-678-9012",
-        "website": "www.oliviaanderson.com",
+        "personality": [
+            7,
+            5,
+            2,
+            4,
+            10
+        ],
         "company": {
             "name": "ABC Inc.",
             "industry": "Technology"
@@ -181,7 +235,13 @@
             "city": "Boston"
         },
         "phone": "555-012-3456",
-        "website": "www.williamclark.com",
+        "personality": [
+            0,
+            8,
+            1,
+            3,
+            11
+        ],
         "company": {
             "name": "ABC Inc.",
             "industry": "Technology"

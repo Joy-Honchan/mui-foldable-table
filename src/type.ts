@@ -3,7 +3,7 @@ export interface SearchParamType {
 }
 
 export default interface DataType {
-    [x: string]: string | number | SearchParamType
+    [x: string]: string | number | SearchParamType | number[]
     id: number,
     // name: string,
     // username: string,
@@ -25,14 +25,28 @@ export default interface DataType {
     // age: number
 }
 
-export interface ColItemType {
+export type ColItemType = BasicColItemType | SearchColItemType | SliderColItemType | MultitagColItemType
+
+interface BasicColItemType {
     field: string
     label: string
     group?: string
-    type?: 'search' | 'slider'
-    min?: number
-    max?: number
-    marks?: { value: number, label: string }[]
+}
+
+interface SearchColItemType extends BasicColItemType {
+    type: 'search'
+}
+
+export interface SliderColItemType extends BasicColItemType {
+    type: 'slider'
+    min: number
+    max: number
+    marks: { value: number, label: string }[]
+}
+
+export interface MultitagColItemType extends BasicColItemType {
+    type: 'multitag'
+    tags: string[]
 }
 
 export interface ColumnGroupType {

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { ColorModeContext } from '../context/ThemeContext'
-import { Box, Button, IconButton } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 

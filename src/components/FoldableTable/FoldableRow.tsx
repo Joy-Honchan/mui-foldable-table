@@ -4,7 +4,7 @@ import InnerTable from './InnerTable.tsx'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DataType, { ColItemType } from '../../type.ts'
-import displayData from '../../utils/displayData.ts'
+import displayData from '../../utils/displayData.tsx'
 
 interface PropType {
   open: boolean
@@ -47,8 +47,11 @@ const FoldableRow = ({
           </IconButton>
         </TableCell>
         {columns.map((item, index) => (
-          <TableCell key={index}>
-            {displayData(item.field, singleRowData)}
+          <TableCell
+            sx={'tags' in item ? { display: 'flex', gap: 1 } : null}
+            key={index}
+          >
+            {displayData(item, singleRowData)}
           </TableCell>
         ))}
       </TableRow>

@@ -130,6 +130,13 @@ const generateTheme = (mode: 'light' | 'dark') => {
               color: theme.palette.primary.light
             })
           }
+        },
+        MuiChip: {
+          styleOverrides: {
+            label: {
+              fontWeight: 500
+            }
+          }
         }
       }
     }

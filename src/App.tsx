@@ -97,8 +97,24 @@ const TableContainer = () => {
         label: 'Gender'
       },
       {
-        field: 'website',
-        label: 'Website'
+        field: 'personality',
+        label: 'Personality',
+        type: 'multitag',
+        tags: [
+          'Introvert',
+          'Creative',
+          'Friendly',
+          'Humble',
+          'Persistent',
+          'Courageous',
+          'Reliable',
+          'Extrovert',
+          'Confident',
+          'Optimistic',
+          'Sociable',
+          'Trustworthy',
+          'Understanding'
+        ]
       }
     ],
     []

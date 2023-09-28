@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import DataType, { ColItemType } from '../../type.ts'
 import getColumnGroup from '../../utils/getColumnGroup.ts'
-import displayData from '../../utils/displayData.ts'
+import displayData from '../../utils/displayData.tsx'
 
 interface PropType {
   innerRowData: Partial<DataType>
@@ -72,9 +72,7 @@ const InnerTable = ({ innerRowData, innerColumns }: PropType) => {
         >
           <TableCell />
           {innerColumns.map((item, index) => (
-            <TableCell key={index}>
-              {displayData(item.field, innerRowData)}
-            </TableCell>
+            <TableCell key={index}>{displayData(item, innerRowData)}</TableCell>
           ))}
         </TableRow>
       </TableBody>
