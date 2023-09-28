@@ -17,8 +17,8 @@ export default function displayData(
   } else if (Array.isArray(fieldData)) {
     if (!('tags' in colItem)) return
     return fieldData.map((item) => {
-      const label = colItem.tags[item]
-      return <PersonalityTag label={label} index={item} />
+      const index = colItem.tags.indexOf(item)
+      return <PersonalityTag key={item} label={item} index={index} />
     })
   } else {
     return fieldData[fieldArr[1]]

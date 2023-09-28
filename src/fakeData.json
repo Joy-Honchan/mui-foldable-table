@@ -11,11 +11,9 @@
         },
         "phone": "555-123-4567",
         "personality": [
-            0,
-            1,
-            2,
-            3,
-            4
+            "Introvert",
+            "Friendly",
+            "Humble"
         ],
         "company": {
             "name": "ABC Inc.",
@@ -36,11 +34,9 @@
         },
         "phone": "555-987-6543",
         "personality": [
-            0,
-            5,
-            2,
-            3,
-            6
+            "Introvert",
+            "Friendly",
+            "Confident"
         ],
         "company": {
             "name": "MarketingMasters",
@@ -61,11 +57,9 @@
         },
         "phone": "555-567-8901",
         "personality": [
-            7,
-            8,
-            9,
-            4,
-            10
+            "Extrovert",
+            "Humble",
+            "Persistent"
         ],
         "company": {
             "name": "DataTech",
@@ -86,11 +80,9 @@
         },
         "phone": "555-234-5678",
         "personality": [
-            0,
-            1,
-            4,
-            6,
-            11
+            "Introvert",
+            "Humble",
+            "Persistent"
         ],
         "company": {
             "name": "ABC Inc.",
@@ -111,11 +103,9 @@
         },
         "phone": "555-345-6789",
         "personality": [
-            7,
-            1,
-            2,
-            10,
-            11
+            "Extrovert",
+            "Reliable",
+            "Confident"
         ],
         "company": {
             "name": "MarketingMasters",
@@ -136,11 +126,9 @@
         },
         "phone": "555-789-0123",
         "personality": [
-            0,
-            1,
-            3,
-            9,
-            12
+            "Extrovert",
+            "Friendly",
+            "Humble"
         ],
         "company": {
             "name": "DataTech",
@@ -161,11 +149,9 @@
         },
         "phone": "555-456-7890",
         "personality": [
-            7,
-            8,
-            9,
-            10,
-            12
+            "Introvert",
+            "Persistent",
+            "Confident"
         ],
         "company": {
             "name": "MarketingMasters",
@@ -186,11 +172,9 @@
         },
         "phone": "555-890-1234",
         "personality": [
-            0,
-            1,
-            4,
-            6,
-            12
+            "Introvert",
+            "Friendly",
+            "Persistent"
         ],
         "company": {
             "name": "DataTech",
@@ -211,11 +195,9 @@
         },
         "phone": "555-678-9012",
         "personality": [
-            7,
-            5,
-            2,
-            4,
-            10
+            "Extrovert",
+            "Humble",
+            "Reliable"
         ],
         "company": {
             "name": "ABC Inc.",
@@ -236,11 +218,9 @@
         },
         "phone": "555-012-3456",
         "personality": [
-            0,
-            8,
-            1,
-            3,
-            11
+            "Introvert",
+            "Creative",
+            "Confident"
         ],
         "company": {
             "name": "ABC Inc.",

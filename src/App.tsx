@@ -102,18 +102,13 @@ const TableContainer = () => {
         type: 'multitag',
         tags: [
           'Introvert',
+          'Extrovert',
           'Creative',
           'Friendly',
           'Humble',
           'Persistent',
-          'Courageous',
           'Reliable',
-          'Extrovert',
-          'Confident',
-          'Optimistic',
-          'Sociable',
-          'Trustworthy',
-          'Understanding'
+          'Confident'
         ]
       }
     ],

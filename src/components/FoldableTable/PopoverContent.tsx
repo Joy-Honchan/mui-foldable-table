@@ -1,5 +1,6 @@
-import { ChangeEvent, useContext, useMemo } from 'react'
+import { ChangeEvent, useContext, useMemo, SyntheticEvent } from 'react'
 import {
+  Autocomplete,
   Box,
   Button,
   FormControl,
@@ -8,9 +9,10 @@ import {
   InputLabel,
   OutlinedInput,
   Slider,
+  TextField,
   Typography
 } from '@mui/material'
-import { ColItemType, SliderColItemType } from '../../type'
+import { ColItemType, SliderColItemType, MultitagColItemType } from '../../type'
 import CloseIcon from '@mui/icons-material/Close'
 import { SearchParamContext } from '../../context/searchParamContext'
 
@@ -19,18 +21,6 @@ interface PropType {
 }
 const PopoverContent = ({ colItem }: PropType) => {
   if (!colItem || !('type' in colItem)) return null
-  // const { searchParams, clearSearchParam, handleSearchParam } =
-  //   useContext(SearchParamContext)
-  // const value = useMemo(
-  //   () => searchParams[colItem.field],
-  //   [searchParams, colItem.field]
-  // )
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   handleSearchParam(colItem.field, e.target.value)
-  // }
-  // const handleClear = () => {
-  //   clearSearchParam(colItem.field)
-  // }
 
   const InputType =
     colItem.type === 'search' ? (
@@ -43,31 +33,20 @@ const PopoverContent = ({ colItem }: PropType) => {
         min={colItem.min}
         max={colItem.max}
       />
+    ) : colItem.type === 'multitag' ? (
+      <TagInputContent
+        field={colItem.field}
+        label={colItem.label}
+        tags={colItem.tags}
+      />
     ) : null
 
   return (
-    <Box display="flex" sx={{ m: 1.5, width: '25ch', flexWrap: 'wrap' }}>
+    <Box
+      display="flex"
+      sx={{ m: 1.5, minWidth: '25ch', maxWidth: '50ch', flexWrap: 'wrap' }}
+    >
       {InputType}
-      {/* <FormControl variant="outlined" size="small">
-        <InputLabel size="small" htmlFor={`${colItem.field}-input`}>
-          {colItem.label}
-        </InputLabel>
-        <OutlinedInput
-          value={value}
-          onChange={handleChange}
-          id={`${colItem.field}-input`}
-          size="small"
-          type="text"
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton onClick={handleClear} edge="end">
-                <CloseIcon />
-              </IconButton>
-            </InputAdornment>
-          }
-          label={colItem.label}
-        />
-      </FormControl> */}
     </Box>
   )
 }
@@ -167,5 +146,47 @@ const SliderInputContent = ({
         )}
       </Box>
     </>
+  )
+}
+
+const TagInputContent = ({
+  field,
+  label,
+  tags
+}: {
+  field: ColItemType['field']
+  label: ColItemType['label']
+  tags: MultitagColItemType['tags']
+}) => {
+  const { searchParams, clearSearchParam, handleSearchParam } =
+    useContext(SearchParamContext)
+  const value = useMemo(() => {
+    const param = searchParams[field]
+    if (typeof param === 'string') return param.split(',')
+    return []
+  }, [searchParams, field])
+  const handleChange = (
+    _: SyntheticEvent<Element, Event>,
+    eventValue: string[]
+  ) => {
+    console.log('eventValue', eventValue)
+    // if (eventValue.length === 0) {
+    //   clearSearchParam(field)
+    //   return
+    // }
+    handleSearchParam(field, eventValue.join(','))
+  }
+  return (
+    <Autocomplete
+      clearOnBlur={false}
+      clearOnEscape={false}
+      fullWidth
+      multiple
+      options={tags}
+      onChange={handleChange}
+      // value={value}
+      filterSelectedOptions
+      renderInput={(params) => <TextField {...params} label={label} />}
+    />
   )
 }
