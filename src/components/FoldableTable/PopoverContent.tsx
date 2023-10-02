@@ -158,22 +158,17 @@ const TagInputContent = ({
   label: ColItemType['label']
   tags: MultitagColItemType['tags']
 }) => {
-  const { searchParams, clearSearchParam, handleSearchParam } =
-    useContext(SearchParamContext)
+  const { searchParams, handleSearchParam } = useContext(SearchParamContext)
   const value = useMemo(() => {
     const param = searchParams[field]
-    if (typeof param === 'string') return param.split(',')
+    if (typeof param === 'string')
+      return param.split(',').filter((item) => item !== '')
     return []
   }, [searchParams, field])
   const handleChange = (
     _: SyntheticEvent<Element, Event>,
     eventValue: string[]
   ) => {
-    console.log('eventValue', eventValue)
-    // if (eventValue.length === 0) {
-    //   clearSearchParam(field)
-    //   return
-    // }
     handleSearchParam(field, eventValue.join(','))
   }
   return (
@@ -184,7 +179,7 @@ const TagInputContent = ({
       multiple
       options={tags}
       onChange={handleChange}
-      // value={value}
+      value={value}
       filterSelectedOptions
       renderInput={(params) => <TextField {...params} label={label} />}
     />

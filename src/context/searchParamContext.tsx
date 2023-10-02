@@ -12,7 +12,12 @@ const SearchParamProvider = ({ children }: { children: ReactNode }) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const nameParam = searchParams.get('name')
   const ageParam = Number(searchParams.get('age'))
-  const param = { name: nameParam || '', age: ageParam || 0 }
+  const personalityParam = searchParams.get('personality')
+  const param = {
+    name: nameParam || '',
+    age: ageParam || 0,
+    personality: personalityParam || ''
+  }
 
   const clearSearchParam = (field: string) => {
     setSearchParams((prev) =>
@@ -25,7 +30,6 @@ const SearchParamProvider = ({ children }: { children: ReactNode }) => {
     if (!value) {
       clearSearchParam(field)
     } else {
-      // setSearchParams((prev) => ({ ...prev, [field]: value }))
       setSearchParams((prev) => {
         prev.set(field, value)
         return prev
