@@ -161,10 +161,10 @@ const TagInputContent = ({
   const { searchParams, handleSearchParam } = useContext(SearchParamContext)
   const value = useMemo(() => {
     const param = searchParams[field]
-    if (typeof param === 'string')
-      return param.split(',').filter((item) => item !== '')
+    if (Array.isArray(param)) return param
     return []
   }, [searchParams, field])
+
   const handleChange = (
     _: SyntheticEvent<Element, Event>,
     eventValue: string[]

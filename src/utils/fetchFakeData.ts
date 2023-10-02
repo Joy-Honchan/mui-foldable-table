@@ -11,7 +11,7 @@ export default async function fetchFakeDate(searchParam: SearchParamType): Promi
     return response
 }
 
-const filterFunc = (field: string, keyword: string | number, originData: DataType) => {
+const filterFunc = (field: string, keyword: string | number | string[], originData: DataType) => {
 
     const currData = originData[field]
     if (typeof currData === "string" && typeof keyword === "string") {
@@ -24,10 +24,9 @@ const filterFunc = (field: string, keyword: string | number, originData: DataTyp
         if (currData <= keyword && currData > keyword - 5) return true
         return false
     }
-    if (Array.isArray(currData) && typeof keyword === "string") {
-        if (keyword === "") return true
-        const personalityArr = keyword.split(',');
-        if (personalityArr.every(item => currData.includes(item))) return true
+    if (Array.isArray(currData) && Array.isArray(keyword)) {
+        if (keyword.length === 0) return true
+        if (keyword.every(item => currData.includes(item))) return true
     }
     return false
 }

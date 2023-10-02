@@ -1,5 +1,5 @@
 export interface SearchParamType {
-    [x: string]: string | number
+    [x: string]: string | number | string[]
 }
 
 export default interface DataType {

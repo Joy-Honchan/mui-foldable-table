@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react'
+import { createContext, ReactNode, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SearchParamType } from '../type'
 
@@ -8,23 +8,40 @@ export const SearchParamContext = createContext({
   handleSearchParam: (_field: string, _value: string) => {}
 })
 
-const SearchParamProvider = ({ children }: { children: ReactNode }) => {
+interface SearchFieldType {
+  [x: string]: string | number | string[]
+}
+
+const SearchParamProvider = ({
+  searchFields,
+  children
+}: {
+  searchFields: SearchFieldType
+  children: ReactNode
+}) => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const nameParam = searchParams.get('name')
-  const ageParam = Number(searchParams.get('age'))
-  const personalityParam = searchParams.get('personality')
-  const param = {
-    name: nameParam || '',
-    age: ageParam || 0,
-    personality: personalityParam || ''
-  }
+
+  const param = useMemo(() => {
+    return searchFields
+      ? Object.keys(searchFields).reduce((acc, item) => {
+          const paramString = searchParams.get(item)
+          acc[item] = paramString
+            ? typeof searchFields[item] === 'number'
+              ? Number(paramString)
+              : Array.isArray(searchFields[item])
+              ? paramString.split(',').filter((item) => item !== '')
+              : paramString
+            : searchFields[item]
+          return acc
+        }, {} as SearchParamType)
+      : {}
+  }, [searchFields, searchParams])
 
   const clearSearchParam = (field: string) => {
-    setSearchParams((prev) =>
-      Object.entries(prev)
-        .filter(([key, _]) => key !== field)
-        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
-    )
+    setSearchParams((prev) => {
+      prev.delete(field)
+      return prev
+    })
   }
   const handleSearchParam = (field: string, value: string) => {
     if (!value) {

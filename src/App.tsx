@@ -16,32 +16,34 @@ import ModeToggle from './components/ModeToggle'
 
 function App() {
   return (
-    <SearchParamProvider>
-      <ThemeProvider>
-        <Box
-          sx={(theme) => ({
-            maxHeight: 'max-content',
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 1,
-            backgroundColor: theme.palette.background.default,
-            px: '5%'
-          })}
+    <ThemeProvider>
+      <Box
+        sx={(theme) => ({
+          maxHeight: 'max-content',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 1,
+          backgroundColor: theme.palette.background.default,
+          px: '5%'
+        })}
+      >
+        <Typography
+          variant="h2"
+          sx={{ fontWeight: 'medium', color: 'text.primary' }}
         >
-          <Typography
-            variant="h2"
-            sx={{ fontWeight: 'medium', color: 'text.primary' }}
-          >
-            MUI Foldable Table with Search Function
-          </Typography>
-          <ModeToggle />
+          MUI Foldable Table with Search Function
+        </Typography>
+        <ModeToggle />
+        <SearchParamProvider
+          searchFields={{ name: '', age: 0, personality: [] }}
+        >
           <TableContainer />
-        </Box>
-      </ThemeProvider>
-    </SearchParamProvider>
+        </SearchParamProvider>
+      </Box>
+    </ThemeProvider>
   )
 }
 
