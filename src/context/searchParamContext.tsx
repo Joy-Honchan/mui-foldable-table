@@ -9,7 +9,8 @@ export const SearchParamContext = createContext({
 })
 
 interface SearchFieldType {
-  [x: string]: string | number | string[]
+  // [x: string]: string | number | string[]
+  [x: string]: '' | 0 | []
 }
 
 const SearchParamProvider = ({

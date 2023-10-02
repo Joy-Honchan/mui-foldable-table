@@ -1,14 +1,15 @@
-import { MouseEvent } from 'react'
-import { IconButton, TableCell } from '@mui/material'
+import { MouseEvent, ReactNode, useContext } from 'react'
+import { Badge, IconButton, TableCell } from '@mui/material'
 import { ColItemType } from '../../type'
 import SearchIcon from '@mui/icons-material/Search'
+import { SearchParamContext } from '../../context/searchParamContext'
 
 interface PropType {
   colItem: ColItemType
   handleIconClick: (event: MouseEvent<HTMLButtonElement>) => void
 }
 const TableHeadCell = ({ colItem, handleIconClick }: PropType) => {
-  const TypeIcon =
+  const SearchBtn =
     'type' in colItem ? (
       <IconButton
         color="inherit"
@@ -17,7 +18,9 @@ const TableHeadCell = ({ colItem, handleIconClick }: PropType) => {
         aria-label={`search-${colItem.field}`}
         size="small"
       >
-        <SearchIcon fontSize="inherit" />
+        <ActiveBadge field={colItem.field}>
+          <SearchIcon fontSize="inherit" />
+        </ActiveBadge>
       </IconButton>
     ) : null
   return (
@@ -32,8 +35,27 @@ const TableHeadCell = ({ colItem, handleIconClick }: PropType) => {
       }
     >
       {colItem.label}
-      {TypeIcon}
+      {SearchBtn}
     </TableCell>
+  )
+}
+
+const ActiveBadge = ({
+  field,
+  children
+}: {
+  field: string
+  children: ReactNode
+}) => {
+  const { searchParams } = useContext(SearchParamContext)
+  const paramValue = searchParams[field]
+  const invisible =
+    !paramValue || (typeof paramValue !== 'number' && paramValue.length) === 0
+
+  return (
+    <Badge variant="dot" color="error" invisible={invisible}>
+      {children}
+    </Badge>
   )
 }
 
