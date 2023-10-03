@@ -7,13 +7,15 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Popover
+  Popover,
+  Typography
 } from '@mui/material'
 import FoldableRow from './FoldableRow.tsx'
 import DataType, { ColItemType, SearchParamType } from '../../type.ts'
 import getColumnGroup from '../../utils/getColumnGroup.ts'
 import TableHeadCell from './TableHeadCell.tsx'
 import PopoverContent from './PopoverContent.tsx'
+import SearchOffIcon from '@mui/icons-material/SearchOff'
 
 interface PropType {
   columns: ColItemType[]
@@ -57,11 +59,14 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
         component={Paper}
         sx={{
           backgroundColor: 'background.paper',
-          minHeight: '689px',
+          minHeight: '600px',
           // maxWidth: '1200px',
           // minWidth: '800px',
           '.MuiTableCell-root': {
             fontSize: '1rem'
+          },
+          '.MuiTableCell-sizeMedium:not(.MuiTableCell-paddingNone)': {
+            paddingY: 1
           }
         }}
       >
@@ -109,19 +114,32 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rowData?.map((item, index) => {
-              const open = openRowId === item.id
-              return (
-                <FoldableRow
-                  open={open}
-                  handleRowOpen={handleRowOpen(item.id)}
-                  key={index}
-                  singleRowData={item}
-                  columns={columns}
-                  innerColumns={innerColumns}
-                />
-              )
-            })}
+            {rowData.length !== 0 ? (
+              rowData.map((item, index) => {
+                const open = openRowId === item.id
+                return (
+                  <FoldableRow
+                    open={open}
+                    handleRowOpen={handleRowOpen(item.id)}
+                    key={index}
+                    singleRowData={item}
+                    columns={columns}
+                    innerColumns={innerColumns}
+                  />
+                )
+              })
+            ) : (
+              <TableRow sx={{ height: '100%' }}>
+                <TableCell colSpan={columns.length + 1} sx={{ border: 0 }}>
+                  <Typography variant="h1" textAlign={'center'} sx={{ mt: 2 }}>
+                    <SearchOffIcon fontSize="inherit" />
+                  </Typography>
+                  <Typography variant="h6" textAlign={'center'}>
+                    No Data
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
