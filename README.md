@@ -1,27 +1,44 @@
-# React + TypeScript + Vite
+# MUI Foldable Table
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+When it comes to Table components, one of my favorite is the collapse table. Because it provides a choice for users to display concise data or more detailed data. After I found out collapse table is not a packed item but still can be build with plain table component, I just couldn't wait to make one.
 
-Currently, two official plugins are available:
+## Feature
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Foldable (Collapse) Rows - Let users choose between concise and detailed data
+- Text Search - For Name column, users can type in plain text to search for matching data
+- Slider Search - For Age column, users can slide to particular age range for matching data
+- MultiTag Search - For Personality column, users can select multiple tags for matching data
+- Search State Management in url - Since the search parameters are stored in the url, the UI state could be preserved even after reload.
+- Dark Mode - Switing website background and text color with the help of MUI ThemeProvider
 
-## Expanding the ESLint configuration
+| Tools & Skills   | Purpose                                                                    |
+| ---------------- | -------------------------------------------------------------------------- |
+| MUI              | Using Table component to build custom Table and Dark Mode palette settings |
+| React Context    | Context for search parameter management and Dark Mode switching            |
+| React Router Dom | Obtain url search parameters with useSearchParam Hook                      |
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Demo
 
-- Configure the top-level `parserOptions` property like this:
+### Foldable Rows
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+![foldable_row](public/folde-table-row.gif)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Text Search
+
+![text_seaerch](public/folde-table-name.gif)
+
+### Slider Search
+
+![slider_search](public/folde-table-age.gif)
+
+### MultiTag Search
+
+![multiTag_search](public/folde-table-personality.gif)
+
+### Search State Management in url
+
+![search_param_url](public/react-flow-searchparam.png)
+
+### Dark Mode
+
+![dark_mode](public/folde-table-dark.gif)
