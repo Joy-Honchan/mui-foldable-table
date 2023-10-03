@@ -149,11 +149,11 @@ const FoldableTable = ({ rowData, columns, innerColumns }: PropType) => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
+          vertical: 'top',
           horizontal: 'center'
         }}
         transformOrigin={{
-          vertical: 'top',
+          vertical: 'bottom',
           horizontal: 'center'
         }}
       >
