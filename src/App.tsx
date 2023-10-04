@@ -27,7 +27,9 @@ function App() {
           alignItems: 'center',
           gap: 1,
           backgroundColor: theme.palette.background.default,
-          px: '5%'
+          px: '5%',
+          py: '20px',
+          boxSizing: 'border-box'
         })}
       >
         <Typography
